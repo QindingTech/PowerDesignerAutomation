@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FFBB2A65-BE24-48FE-A5D5-4752491A34DE}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PowerDesignerAutomation</RootNamespace>
+    <AssemblyName>PowerDesignerAutomation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="template\Generator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastOutputs>.\Generator.java</LastOutputs>
+      <LastGenOutput>Generator.java</LastGenOutput>
+    </None>
+    <None Include="template\MultipleOutputHelper.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QinDingTech.PowerDesignerHelper\QinDingTech.PowerDesignerHelper.csproj">
+      <Project>{b3a51a16-7087-41dd-8f15-72d2ecdc94ea}</Project>
+      <Name>QinDingTech.PowerDesignerHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="template\Dict.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\DictArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Event.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\EventArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\EventDetail.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\EventDetailArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Generator.java">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Geographic.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\GeographicArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Group.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\GroupArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\InventoryCon.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\InventoryConArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Item.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemCharacterHis.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemCharacterHisArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemCompatibility.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemCompatibilityArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemConnection.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemConnectionArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemCost.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemCostArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemDispositionHis.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemDispositionHisArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemMovementHis.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemMovementHisArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemUsage.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ItemUsageArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Location.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\LocationArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Material.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\MaterialArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\MaterialCost.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\MaterialCostArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\MaterialUsage.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\MaterialUsageArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\Organization.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\OrganizationArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\People.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\PeopleArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\QualityCheck.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\QualityCheckArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\QualityStandard.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\QualityStandardArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ResourceInfo.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ResourceInfoArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ServiceOffer.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\ServiceRequest.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\StockOrder.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\StockOrderArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\StockOrderLineCon.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\StockOrderLineConArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\StockOrderLineItem.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+    <Content Include="template\StockOrderLineItemArc.java">
+      <DependentUpon>Generator.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

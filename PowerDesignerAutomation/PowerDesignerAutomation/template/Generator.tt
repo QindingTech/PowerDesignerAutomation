@@ -1,0 +1,77 @@
+<#@ template language="C#" debug="True" #>
+<#@ output extension="java" encoding="utf-8"#>
+<#@ include file="T4Toolbox.tt" #>
+<#@ assembly name="EnvDTE" #>
+<#@ assembly name="EnvDTE80" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="EnvDTE80" #>
+<#@ assembly name="$(SolutionDir)\bin\Debug\QinDingTech.PowerDesignerHelper.dll" #>
+<#@ import namespace="QinDingTech.PowerDesignerHelper" #>
+<#@ include file="MultipleOutputHelper.ttinclude" #>
+
+<#
+String pdmPath = @"D:\Projects\QinDingTech\new-energy-management-platform\trunk\0002-Design\Database\platform\platform.pdm";
+String packageName = "com.qindingtech.amp.entity";
+
+var manager = Manager.Create(Host,GenerationEnvironment); 
+
+            
+PdmFileReader reader=new PdmFileReader();
+PdmModel model = reader.ReadFromFile(pdmPath);
+foreach (var tbl in model.Tables)
+{
+	manager.StartNewFile(tbl.Name+".java" );
+#>
+package <#= packageName#>;
+
+import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+/****
+ * <#= tbl.Comment #>
+ */
+@Entity
+@Table(name = "<#= tbl.Code#>")
+public class <#= tbl.Name#> implements Serializable{
+	<#
+	foreach (var col in tbl.Columns){
+	String colType = col.ShowJpaColumnType();
+	String colObjName = col.Name.Substring(0, 1).ToUpper() + col.Name.Substring(1);
+	String generatorName = tbl.Code.Substring(3)+"_uuid";
+	#>/***
+	 * <#= col.Comment #>
+	 */
+	<#
+	if(col.IsPrimaryKey){
+	#>@Id
+    @GeneratedValue(generator = "<#= generatorName#>")
+    @GenericGenerator(name =  "<#= generatorName#>", strategy = "uuid")
+	<#
+	}
+	#>@Column(name = "<#= col.Code#>")
+	private <#= colType#> <#= col.Name#>;	
+
+	public <#= colType#> get<#= colObjName#>(){
+		return this.<#= col.Name#>;
+	}
+
+	public void set<#= colObjName#>(<#= colType#> <#= col.Name#>){
+		this.<#= col.Name#>=<#= col.Name#>;
+	}
+
+	<#
+}
+	#>
+}
+<#
+	manager.EndBlock();
+}
+
+manager.Process(true);  
+#> 
+
+
+
